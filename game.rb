@@ -50,11 +50,19 @@ class Game
   end 
 
   def lose?
-    puts "The computer got you this time!" if @turns == 0
+    @turns == 0
   end
 
   def win?
     @player_guess == code
+  end
+
+  def game_over
+    if lose?
+      "Looks like the computer got you this time! The code was #{code}"
+    else
+      "You win!"
+    end
   end
 
   def return_results(color_match, peg_match)
@@ -62,8 +70,6 @@ class Game
   end
 
   def turn
-    system("clear")
-
     turn_guess = current_player.get_move
     
     until valid?(turn_guess)
